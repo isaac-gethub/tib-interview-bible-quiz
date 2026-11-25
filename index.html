@@ -7,7 +7,8 @@
 header{background:var(--navy);color:#fff;padding:10px 14px;position:sticky;top:0;z-index:5;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 header h1{font-size:15px;margin:0;flex:1 1 200px;line-height:1.25}header h1 small{display:block;font-weight:400;opacity:.8;font-size:12px}
 header select,header button{font:inherit;font-size:14px;padding:7px 9px;border-radius:8px;border:0}
-header button{background:#fff;color:var(--navy);cursor:pointer;font-weight:700}
+header button,header a.jr{background:#fff;color:var(--navy);cursor:pointer;font-weight:700;text-decoration:none;display:inline-block}
+header a.jr{font-size:14px;padding:7px 9px;border-radius:8px;background:#e8f1fc}
 main{max-width:860px;margin:0 auto;padding:14px}
 h2{font-size:20px;color:var(--navy);margin:6px 0 10px}h3{font-size:16px;color:var(--navy);margin:0 0 6px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;margin:0 0 12px}
@@ -46,7 +47,7 @@ table{width:100%;border-collapse:collapse;font-size:14px}td,th{border:1px solid 
 @media(min-width:880px){main{padding:22px 14px}}
 </style></head><body>
 <header><h1>Interview Bible Quiz<small>Senior SAP Controls Consultant · TIB Systems LLC</small></h1>
-<select id="jump" aria-label="Jump to any quiz"></select><button id="hm">Home</button><button id="rd">Reading + Audio</button><button id="dc">Study Guide</button><button id="pg">Progress</button></header>
+<select id="jump" aria-label="Jump to any quiz"></select><a class="jr" href="https://tib-job-readiness-prep.vercel.app/roadmap.html">← Job Readiness Roadmap</a><button id="hm">Quiz Home</button><button id="rd">Reading + Audio</button><button id="dc">Study Guide</button><button id="pg">Progress</button></header>
 <main id="app"></main>
 <script>
 let DATA,ALL=[],BY={};
