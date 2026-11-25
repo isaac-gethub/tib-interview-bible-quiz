@@ -1,0 +1,512 @@
+<p><strong>TIB Systems LLC</strong></p>
+<p><strong>Senior SAP Controls Consultant</strong></p>
+<p><strong>Interview Bible: Reading Companion</strong></p>
+<h1 id="week-1-foundations-and-audit-frameworks"><strong>Week 1: Foundations and audit frameworks</strong></h1>
+<h2 id="week-1-monday-risk-control-and-evidence"><strong>Week 1, Monday: risk, control and evidence</strong></h2>
+<div class="ap"><span>Listen: Week 1, Monday</span><audio controls preload="none" src="audio/Reading_Week_1_Monday.mp3"></audio></div>
+<p><strong>READ FIRST</strong></p>
+<p><strong>QUESTION 10 What an application control is</strong></p>
+<p><strong>Definition.</strong> An IT application control is a control built into the system that runs automatically every time a transaction is processed, so it does not depend on a person remembering to do it.</p>
+<p><strong>SAP examples.</strong> Two SAP examples: the three-way match in purchasing and invoice verification, where SAP blocks an invoice for payment if price or quantity differ from the purchase order and goods receipt beyond a set tolerance; and posting period control, where configuration in OB52 stops users from posting to closed periods.</p>
+<p><strong>Manual control testing.</strong> The key differences from manual controls are consistency and testing approach. A manual control can fail on any day, so we test a sample across the year.</p>
+<p><strong>Automated controls and ITGC reliance.</strong> An automated control behaves the same way every time, so if the ITGCs over change management and access are effective, I can test it once per scenario and then confirm the configuration did not change during the period. If the ITGCs are weak, that assumption falls away and I need much more testing.</p>
+<p><strong>QUESTION 11 Interface controls</strong></p>
+<p><strong>Source approval.</strong> I would expect controls in four places. At the source, the payroll results are approved before they are sent.</p>
+<p><strong>Transit checks.</strong> In transit, control totals such as record count and total amount are sent with the file and checked by SAP on receipt, and the file is protected from changes.</p>
+<p><strong>Receipt monitoring.</strong> On receipt, interface errors are logged and monitored, for example in the interface or IDoc monitoring, and every error is fixed and reprocessed.</p>
+<p><strong>Reconciliation.</strong> And afterwards, a reconciliation between the payroll register and what posted in the SAP ledger, reviewed and signed by someone in finance.</p>
+<p><strong>Test the interface.</strong> To test, I walk through one payroll run end to end, then test a sample of runs: control totals agreed, errors resolved, and the reconciliation done on time with differences explained.</p>
+<p><strong>Restrict changes.</strong> I also check who can change the interface mapping or the batch job, because that is a change management and access risk, and I consider whether the payroll provider's SOC 1 covers the source side.</p>
+<p><strong>QUESTION 1 The ITGC domains in an SAP landscape</strong></p>
+<p><strong>Overview.</strong> I group SAP ITGCs into three domains.</p>
+<p><strong>Access to programs and data.</strong> First, access to programs and data: user provisioning, leavers, periodic access reviews, privileged access such as SAP_ALL or firefighter IDs, and password and system parameter settings. If access is weak, someone could post or change financial data without authority.</p>
+<p><strong>Program change.</strong> Second, program change: changes move from development to quality to production through transports, with approval, testing and segregation between developers and the people who import into production. If change is weak, a configuration or code change could break an automated control without anyone noticing.</p>
+<p><strong>IT operations.</strong> Third, IT operations: batch job scheduling and monitoring in SM37, interface monitoring, and backup and recovery. If operations fail, transactions can be missed or duplicated.</p>
+<p><strong>Program development.</strong> Some firms add a fourth domain, program development, for new implementations.</p>
+<p><strong>Auditor reliance.</strong> The reason all of this matters is reliance: the external auditor relies on automated controls and system-generated reports, and that reliance is only valid if the ITGCs around them operated effectively for the whole period.</p>
+<p><strong>ALSO KNOW</strong></p>
+<p><strong>•</strong> A control is a safeguard that reduces the likelihood or the impact of something going wrong. A preventive control stops the problem happening; a detective control finds it after it has happened.</p>
+<p><strong>•</strong> Evidence must show that the control operated. A policy only describes the control; it does not show the control was performed. “Approval is required” is not evidence of approvals.</p>
+<p><strong>•</strong> For a payment sent twice, the best evidence is the payment log for both runs, the bank or clearing record, and the reversal or supplier credit.</p>
+<h2 id="week-1-tuesday-sox-and-coso"><strong>Week 1, Tuesday: SOX and COSO</strong></h2>
+<div class="ap"><span>Listen: Week 1, Tuesday</span><audio controls preload="none" src="audio/Reading_Week_1_Tuesday.mp3"></audio></div>
+<p><strong>READ FIRST</strong></p>
+<p><strong>QUESTION 12 SOX 302 and 404 in plain terms</strong></p>
+<p><strong>SOX Section 302.</strong> Section 302 requires the CEO and CFO of a US-listed company to personally certify each quarterly and annual report, including that they are responsible for internal controls and have disclosed significant deficiencies and material weaknesses.</p>
+<p><strong>SOX Section 404.</strong> Section 404 has two parts: 404(a) requires management to assess and report on the effectiveness of internal control over financial reporting each year, and 404(b) requires the external auditor of larger companies to give its own opinion on those controls.</p>
+<p><strong>Why IT controls matter.</strong> IT controls fit in because almost every financial process runs through systems like SAP. Automated controls and system reports are only reliable if the IT general controls around them work, so ITGCs and application controls are tested as part of the 404 programme.</p>
+<p><strong>How testing is used.</strong> In practice, my testing either supports management's assessment or is used, or re-performed, by the external auditor, which is why the evidence and documentation have to stand up to scrutiny.</p>
+<p><strong>QUESTION 13 The COSO framework</strong></p>
+<p><strong>COSO and its components.</strong> COSO 2013 is the framework most US companies use for internal control over financial reporting. It has five components: control environment, risk assessment, control activities, information and communication, and monitoring activities, supported by 17 principles.</p>
+<p><strong>Control activities.</strong> For an IT controls consultant, the most direct link is control activities, and in particular principle 11, which says the organization selects and develops general control activities over technology, which is where ITGCs sit.</p>
+<p><strong>Risk assessment and scope.</strong> But the others matter too. Risk assessment drives which systems are in scope.</p>
+<p><strong>Information quality.</strong> Information and communication covers the quality of information used in controls, which is where testing the completeness and accuracy of system reports comes in.</p>
+<p><strong>Monitoring.</strong> And monitoring covers ongoing and separate evaluations, such as access reviews and control self-assessments.</p>
+<p><strong>Deficiency evaluation.</strong> When a deficiency is evaluated, the auditor also considers the control environment, for example whether management overrides controls.</p>
+<h2 id="week-1-wednesday-cobit-three-lines-and-standards"><strong>Week 1, Wednesday: COBIT, three lines and standards</strong></h2>
+<div class="ap"><span>Listen: Week 1, Wednesday</span><audio controls preload="none" src="audio/Reading_Week_1_Wednesday.mp3"></audio></div>
+<p><strong>READ FIRST</strong></p>
+<p><strong>QUESTION 39 COBIT versus COSO</strong></p>
+<p><strong>COSO purpose.</strong> COSO is a general framework for internal control, used by most companies to assess internal control over financial reporting under SOX.</p>
+<p><strong>COBIT scope.</strong> COBIT, from ISACA, is a framework for the governance and management of enterprise IT. It covers far more than financial reporting, including IT strategy, risk, security, service delivery and performance measurement.</p>
+<p><strong>How both support SOX.</strong> In SOX work, COSO is the framework management reports against, and COBIT is often used underneath it to organise and describe the IT general controls, for example mapping access, change and operations controls to COBIT processes, or using its maturity approach in advisory work.</p>
+<p><strong>When to use COBIT.</strong> I would use COBIT when a client wants to improve IT governance more broadly, or when designing an ITGC framework from scratch, while keeping the SOX conclusion tied to COSO and the financial reporting risks.</p>
+<p><strong>QUESTION 14 Lines of defence and who does what</strong></p>
+<p><strong>First line.</strong> The Three Lines model separates responsibilities. The first line is management and the control owners who run the business and operate the controls.</p>
+<p><strong>Second line.</strong> The second line is functions such as risk management, compliance and often the SOX programme office, which set frameworks and monitor.</p>
+<p><strong>Third line.</strong> The third line is internal audit, which gives independent assurance to the board.</p>
+<p><strong>External auditor.</strong> The external auditor sits outside the organisation and gives its own opinion.</p>
+<p><strong>Consultant role.</strong> As a controls consultant, where I sit depends on the engagement: helping the SOX office design and test controls puts me in a second-line role, while supporting internal audit testing puts me in a third-line role.</p>
+<p><strong>Coordination and independence.</strong> Either way I work closely with the external auditor: I agree the plan, sample sizes and evidence standards at the start, so they can rely on our testing where allowed. I also guard independence, for example I do not test controls I designed, and I do not operate controls on the client's behalf.</p>
+<p><strong>QUESTION 50 The top-down, risk-based approach</strong></p>
+<p><strong>Financial statements and accounts.</strong> Top-down, risk-based means starting from the financial statements, not from the system. First I identify significant accounts and disclosures, using materiality and qualitative risk.</p>
+<p><strong>Assertions and processes.</strong> Then the relevant assertions for each, such as existence or completeness, and the processes and transactions that feed them.</p>
+<p><strong>Risks and key controls.</strong> Then the risks of material misstatement in those processes, and the key controls that address them, choosing the most efficient mix of manual and automated controls.</p>
+<p><strong>Systems and ITGC scope.</strong> Only then do I look at technology: which systems support those key controls or produce the reports they rely on. Those systems, such as the SAP production client for finance and logistics, and the database and operating system beneath it, are in scope for ITGCs.</p>
+<p><strong>Audit alignment and documentation.</strong> This approach is what PCAOB AS 2201 expects of the external auditor, and following it means we test what matters and can defend why other areas are out of scope. I document each step so the scope can be challenged and explained.</p>
+<p><strong>ALSO KNOW</strong></p>
+<p><strong>•</strong> Independence: do not test a control you designed. Raise it with your lead, because your objectivity is compromised.</p>
+<h2 id="week-1-thursday-itgc-domains-and-the-12-phase-map"><strong>Week 1, Thursday: ITGC domains and the 12-phase map</strong></h2>
+<div class="ap"><span>Listen: Week 1, Thursday</span><audio controls preload="none" src="audio/Reading_Week_1_Thursday.mp3"></audio></div>
+<p><strong>READ FIRST</strong></p>
+<p><strong>QUESTION 1 The ITGC domains in an SAP landscape:</strong> read it in Week 1, Monday above.</p>
+<p><strong>ALSO KNOW</strong></p>
+<p><strong>•</strong> The 12 phases: 0 Onboarding and mobilisation; 1 Planning and scoping; 2 Understanding the controls and the RCM; 3 Test planning; 4 Evidence extraction and IPE (get populations from SAP and prove them complete and accurate); 5 Interim testing: access; 6 Interim testing: change, operations, SDLC; 7 Relying on the SOC 1 report; 8 Exceptions, deficiencies and findings; 9 Remediation and retesting; 10 Roll-forward and year-end testing; 11 Review, reporting and close-out.</p>
+<p><strong>•</strong> Phase 0 rookie mistake: waiting until week three to request access, or assuming last year’s file shows this year. Lost access time is never recovered, and last year’s populations miss what changed.</p>
+<h2 id="week-1-friday-design-and-operating-effectiveness"><strong>Week 1, Friday: design and operating effectiveness</strong></h2>
+<div class="ap"><span>Listen: Week 1, Friday</span><audio controls preload="none" src="audio/Reading_Week_1_Friday.mp3"></audio></div>
+<p><strong>READ FIRST</strong></p>
+<p><strong>QUESTION 6 Design versus operating effectiveness</strong></p>
+<p><strong>Design effectiveness.</strong> Design is whether the control, if it works as described, would prevent or detect the risk.</p>
+<p><strong>Operating effectiveness.</strong> Operating effectiveness is whether it actually worked consistently throughout the period.</p>
+<p><strong>Design walkthrough.</strong> I test design first, usually with a walkthrough: I follow one transaction end to end, inspect the evidence and confirm the control addresses the risk at the right precision. For example, for a vendor bank change review, I check that the review covers all bank changes, is done by someone independent, and happens before the payment run.</p>
+<p><strong>Operating test sample.</strong> Then I test operating effectiveness with a sample over the period, for example two quarters of the review if it is quarterly, or 25 instances if it happens several times a day.</p>
+<p><strong>Design failure decision.</strong> If the design fails, there is no point testing operation; I raise it as a design deficiency with my lead straight away, because it means the risk is not covered at all.</p>
+<p><strong>ALSO KNOW</strong></p>
+<p><strong>•</strong> Testing a setting: a screenshot proves only one moment. To cover the period you need change logs or change documents for the whole year.</p>
+<h1 id="week-2-itgcs-and-access-risk"><strong>Week 2: ITGCs and access risk</strong></h1>
+<h2 id="week-2-monday-testing-user-provisioning"><strong>Week 2, Monday: testing user provisioning</strong></h2>
+<div class="ap"><span>Listen: Week 2, Monday</span><audio controls preload="none" src="audio/Reading_Week_2_Monday.mp3"></audio></div>
+<p><strong>READ FIRST</strong></p>
+<p><strong>QUESTION 27 Testing user provisioning</strong></p>
+<p><strong>SAP population and completeness.</strong> I start by getting the population from SAP itself: all users created, and all role assignments added, during the period. I use the user master data in USR02 for creation dates and the change documents for role assignments, run through SUIM or the GRC reports, and I record the parameters and run date so the population can be re-created. I check completeness by comparing the count with a second view of the same data.</p>
+<p><strong>Sample selection.</strong> Then I select a sample using our sampling guidance, typically 25 for a control that happens many times a day.</p>
+<p><strong>Approval and risk checks.</strong> For each sample I trace back to the access request: was there a request, was it approved by the right person, was the approval before the access was granted, and does the access actually given match what was approved. If GRC Access Request Management is used, I also check that the risk analysis was run and any conflicts were mitigated before approval.</p>
+<p><strong>Document and conclude.</strong> I document each sample with screenshots or exports, and I conclude on design and operating effectiveness. Any sample that fails becomes an exception that I evaluate, not one I explain away.</p>
+<p><strong>ALSO KNOW</strong></p>
+<p><strong>•</strong> If a population does not agree to another source (for example 131 users created against 120 requests), treat the difference as unexplained: find who created each user and why, and do not sample until it is explained.</p>
+<h2 id="week-2-tuesday-leavers-and-terminations"><strong>Week 2, Tuesday: leavers and terminations</strong></h2>
+<div class="ap"><span>Listen: Week 2, Tuesday</span><audio controls preload="none" src="audio/Reading_Week_2_Tuesday.mp3"></audio></div>
+<p><strong>READ FIRST</strong></p>
+<p><strong>QUESTION 28 Testing leavers and terminations</strong></p>
+<p><strong>HR leaver population.</strong> Automated or not, I test it. I get a list of everyone who left during the period from the HR system, and I check that the list itself is complete, for example by agreeing headcount movements.</p>
+<p><strong>Compare with SAP.</strong> I then compare it with SAP: for each leaver, when was the user locked or the validity date ended, and was that within the client's policy, often one or three business days.</p>
+<p><strong>Test the automation.</strong> Because the process is automated, I also look at the automated part as an application control: how the HR interface triggers the lock, and whether that configuration changed during the year.</p>
+<p><strong>Assess overdue access.</strong> For any leaver whose access stayed open too long, I check the last logon date and the change documents to see whether the account was used after the leave date. Late removal with no use is still an exception, but a much lower risk than late removal with activity.</p>
+<p><strong>Accounts outside HR.</strong> I also look for accounts not linked to HR at all, such as contractors and generic IDs, because the automated process usually does not cover them.</p>
+<p><strong>ALSO KNOW</strong></p>
+<p><strong>•</strong> A leaver you cannot find in SAP is a pass only after you have checked the other ways the user might appear: alias, name and personnel number.</p>
+<h2 id="week-2-wednesday-privileged-and-emergency-access"><strong>Week 2, Wednesday: privileged and emergency access</strong></h2>
+<div class="ap"><span>Listen: Week 2, Wednesday</span><audio controls preload="none" src="audio/Reading_Week_2_Wednesday.mp3"></audio></div>
+<p><strong>READ FIRST</strong></p>
+<p><strong>QUESTION 3 Privileged access and SAP_ALL</strong></p>
+<p><strong>Confirm the facts.</strong> First I confirm the facts: which users, whether the profile is active and valid, when it was assigned and by whom, using SUIM and the user change documents. I separate expected cases, such as an emergency firefighter ID locked by default, from real issues, such as named dialog users who hold SAP_ALL permanently. For any real issue I find out the business reason and who approved it.</p>
+<p><strong>Review actual activity.</strong> Then I look at what those users actually did: the security audit log in SM20 if it is active, and change documents for sensitive tables and master data. If I cannot show what was done, that gap is itself a problem.</p>
+<p><strong>Escalate to the lead.</strong> I raise it with my lead the same day, because permanent SAP_ALL in production undermines both access and change controls, and it may affect reliance on other controls.</p>
+<p><strong>Remove or contain access.</strong> The usual remediation is to remove the profile, move genuine emergency needs to a firefighter process with logging and review, and assess whether the access was misused during the period.</p>
+<p><strong>QUESTION 5 Emergency access and firefighter review</strong></p>
+<p><strong>Emergency access lifecycle.</strong> Emergency access gives temporary, powerful access for urgent fixes, so it needs strong controls around it. In GRC Emergency Access Management, users request a firefighter ID with a reason; the session is logged, including transactions run and changes made; and a controller, who is independent of the user, reviews the log within an agreed time, often a few days.</p>
+<p><strong>Population and sample.</strong> To test it, I get the population of all firefighter sessions in the period from GRC, check it is complete against the firefighter log reports, and select a sample.</p>
+<p><strong>Session review evidence.</strong> For each one I check there was a valid reason linked to a ticket, that the activity matched the reason, that the controller reviewed and signed off on time, and that anything unexpected was followed up.</p>
+<p><strong>Owner and controller assignments.</strong> I also check who is assigned as owner and controller, that controllers are not reviewing themselves, and who can use firefighter IDs at all.</p>
+<h2 id="week-2-thursday-access-reviews-sod-and-mitigating-controls"><strong>Week 2, Thursday: access reviews, SoD and mitigating controls</strong></h2>
+<div class="ap"><span>Listen: Week 2, Thursday</span><audio controls preload="none" src="audio/Reading_Week_2_Thursday.mp3"></audio></div>
+<p><strong>READ FIRST</strong></p>
+<p><strong>QUESTION 32 User access reviews that actually work</strong></p>
+<p><strong>What a review must achieve.</strong> An access review works when the right person reviews a complete and understandable list and the changes they ask for actually happen. Auditors fail reviews for four common reasons.</p>
+<p><strong>Population completeness.</strong> The list was incomplete, for example missing service accounts or a second system, so I compare the list given to reviewers with a system extract from the same date.</p>
+<p><strong>Reviewer understanding.</strong> The reviewer could not understand it, for example role names with no description, so they approved everything; I look for evidence of real review, such as some removals or questions.</p>
+<p><strong>Timing and sign-off.</strong> The review was late or not signed off.</p>
+<p><strong>Removal follow-through.</strong> And requested removals were never processed, so I trace a sample of removals to SAP change documents.</p>
+<p><strong>Privileged access review.</strong> A good design also covers privileged and firefighter access separately, and has the reviewer be someone who knows the job, usually the line manager or role owner, not the security team reviewing their own work.</p>
+<p><strong>QUESTION 31 Mitigating controls</strong></p>
+<p><strong>Business rationale.</strong> I accept the business reason as a starting point, then test the mitigation like any other control.</p>
+<p><strong>Fit to the risk.</strong> First, does it actually address the specific risk? A general monthly review of expenses does not mitigate the risk of changing vendor bank details and paying them; a review of all vendor bank changes before each payment run does.</p>
+<p><strong>Reviewer independence.</strong> Second, is it performed by someone independent of the user with the conflict?</p>
+<p><strong>Precision and timing.</strong> Third, is it precise enough and frequent enough to catch the problem in time?</p>
+<p><strong>Evidence of operation.</strong> Fourth, is there evidence that it happened, every period, for the whole year?</p>
+<p><strong>GRC assignments.</strong> In GRC I also check that the mitigating control is assigned to that user and risk, with a valid date range and an owner, and that monitors are notified.</p>
+<p><strong>Mitigation decision.</strong> If all of that holds, the conflict is accepted as mitigated and documented. If not, the options are to remove the access, split the role, or design a proper mitigation, and the business owner signs off on whichever is chosen.</p>
+<p><strong>QUESTION 4 Explaining segregation of duties</strong></p>
+<p><strong>Plain-language definition.</strong> Segregation of duties means no single person should be able to start, approve and hide a transaction on their own, because that creates the chance for fraud or error without anyone noticing.</p>
+<p><strong>SAP example and fraud risk.</strong> A classic SAP example is in purchase to pay: if one user can create or change a vendor master record, for example in transaction XK02 or the business partner transaction, and can also run the payment program in F110, they could change a vendor's bank details to their own account and pay it.</p>
+<p><strong>GRC ruleset.</strong> In SAP GRC Access Control this shows up as a risk in the ruleset, made of two functions, vendor maintenance and payment processing, each with their actions and permissions.</p>
+<p><strong>Evaluate the conflict.</strong> When I find a conflict I look at whether it is real, whether the access is used, and whether there is a mitigating control, such as a review of vendor bank changes before each payment run.</p>
+<h2 id="week-2-friday-grc-risk-analysis-role-design-database-access"><strong>Week 2, Friday: GRC risk analysis, role design, database access</strong></h2>
+<div class="ap"><span>Listen: Week 2, Friday</span><audio controls preload="none" src="audio/Reading_Week_2_Friday.mp3"></audio></div>
+<p><strong>READ FIRST</strong></p>
+<p><strong>QUESTION 30 How access risk analysis works in GRC</strong></p>
+<p><strong>How the ruleset works.</strong> GRC compares each user's or role's authorizations against a ruleset. The ruleset defines risks; each risk is a combination of functions, each function is a set of actions such as transaction codes, and each action can be refined with permission values, such as an authorization object and activity.</p>
+<p><strong>Analysis level.</strong> Analysis can run at action level, which is broader, or at permission level, which is more precise and reduces false positives.</p>
+<p><strong>Ruleset governance.</strong> For results to be reliable, three things must be true. The ruleset must be complete and approved, and changes to it must go through change control, because deleting a risk makes conflicts disappear.</p>
+<p><strong>Synchronisation.</strong> The repository and authorization sync jobs must have run successfully, otherwise GRC is analysing old data.</p>
+<p><strong>Analysis coverage.</strong> And the analysis must cover all relevant systems and users, including firefighter IDs and service accounts.</p>
+<p><strong>Validate before reliance.</strong> When I test, I check all three before I rely on any report, and I re-run analysis for a sample of users to confirm the output.</p>
+<p><strong>QUESTION 42 Database-level privileged access</strong></p>
+<p><strong>Risk of direct database access.</strong> Someone with powerful access to the HANA database can read or change tables directly, without going through SAP's application controls, authorizations or change documents. That can undermine every control above it. So I test four things.</p>
+<p><strong>Database account approval.</strong> Who has database accounts, and whether each is justified and approved, taking the user list from the database itself.</p>
+<p><strong>Powerful privileges.</strong> Who holds powerful system privileges, such as user administration or the ability to change data in the SAP schema, and whether the default SYSTEM user is deactivated or tightly controlled.</p>
+<p><strong>Audit logs and review.</strong> Whether audit policies are switched on for privileged activity, such as changes to users and privileges and direct data changes. And whether someone independent reviews those audit logs.</p>
+<p><strong>RISE responsibility.</strong> If the client is on RISE, much of the database administration is done by SAP, so I check the SOC 1 for those controls and focus my own testing on any database access the client keeps.</p>
+<p><strong>QUESTION 49 Role design and SoD remediation</strong></p>
+<p><strong>Validate risk results.</strong> I would not start by working user by user. First I make sure the numbers are real: confirm the ruleset is right for the client and run permission-level analysis to remove false positives.</p>
+<p><strong>Role-level analysis.</strong> Then I analyse at role level, because most user conflicts come from a few badly designed roles; fixing one role can clear dozens of conflicts.</p>
+<p><strong>Remove unused access.</strong> Next I use usage data to remove access people have not used, which is quick and low-risk.</p>
+<p><strong>Remediate by risk.</strong> What is left needs business decisions: redesign or split roles, reassign duties, or accept the risk with a tested mitigating control, signed off by the business owner. I prioritize by risk, starting with the critical financial risks like vendor payments and journal posting.</p>
+<p><strong>Prevention and reporting.</strong> To keep it clean, I make sure risk analysis runs before access is approved in access requests, and that new roles are checked in Business Role Management before they go live. I report progress weekly with a simple measure: open critical conflicts by owner.</p>
+<h1 id="week-3-testing-approach-evidence-change-operations-and-application-controls"><strong>Week 3: Testing approach, evidence, change, operations and application controls</strong></h1>
+<h2 id="week-3-monday-sampling-and-information-produced-by-the-entity"><strong>Week 3, Monday: sampling and information produced by the entity</strong></h2>
+<div class="ap"><span>Listen: Week 3, Monday</span><audio controls preload="none" src="audio/Reading_Week_3_Monday.mp3"></audio></div>
+<p><strong>READ FIRST</strong></p>
+<p><strong>QUESTION 33 Sampling approach</strong></p>
+<p><strong>Methodology and sample size.</strong> Sample size comes from the firm's or client's methodology, mainly based on how often the control runs and how risky it is. A common table is: annual 1, quarterly 2, monthly 2 to 5, weekly 5 to 15, daily 20 to 40, and many times a day 25 to 60, with higher numbers for higher risk or where we plan to rely more.</p>
+<p><strong>Automated controls.</strong> Automated controls are different: if the ITGCs are effective, I test one instance of each relevant scenario plus confirm the configuration did not change during the period.</p>
+<p><strong>Selection and period coverage.</strong> For selection, I use random or systematic selection from a complete population and record the method and seed, so a reviewer can reproduce it. I make sure the sample covers the whole period, not just the first months.</p>
+<p><strong>Handling exceptions.</strong> If I find an exception, I do not quietly add more samples; I discuss with my lead whether to expand the sample or conclude the control is ineffective, following the methodology.</p>
+<p><strong>QUESTION 34 Completeness and accuracy of system reports</strong></p>
+<p><strong>Report origin and method.</strong> I treat it as information produced by the entity, and I need evidence that it is complete and accurate before I use it. First, how was it produced: standard SAP transaction, custom report or query, or a spreadsheet built from an extract.</p>
+<p><strong>Run parameters.</strong> Second, the parameters: I want to see them, ideally by observing the run or re-running it myself, so I know nothing was filtered out.</p>
+<p><strong>Completeness.</strong> Third, completeness: I agree the total count or value to an independent source, such as the general ledger balance or a second report.</p>
+<p><strong>Accuracy.</strong> Fourth, accuracy: I trace a few items from the report back to the source documents in SAP and from source to report.</p>
+<p><strong>Custom logic.</strong> For a custom report, I also need comfort over the logic, either by testing it or by relying on effective change management for that program.</p>
+<p><strong>Export integrity and documentation.</strong> If the report was exported to Excel, I check that nothing was changed after export. All of this goes in the workpaper, because reviewers and external auditors look for it first.</p>
+<p><strong>QUESTION 35 Testing an automated control</strong></p>
+<p><strong>Design and tolerances.</strong> I start with design: I inspect the tolerance configuration for invoice verification, the tolerance keys for price and quantity variances by company code, and agree them to the policy the business has approved.</p>
+<p><strong>Positive and negative testing.</strong> Then I test operation with both a positive and a negative case. Where possible I observe, in a test system with the same configuration, an invoice within tolerance being posted and one outside tolerance being blocked for payment.</p>
+<p><strong>Production evidence.</strong> In production I can instead take existing invoices blocked for price or quantity variance and confirm the block reason matches the tolerance.</p>
+<p><strong>Release access.</strong> I also check who can release blocked invoices, because a strong block is pointless if anyone can release it, and I test a sample of releases for approval.</p>
+<p><strong>Configuration changes.</strong> Finally, for the period, I review the configuration change logs to confirm the tolerances did not change, and I rely on effective change management ITGCs. If the tolerances changed mid-year, I test the control under both settings.</p>
+<h2 id="week-3-tuesday-change-management-and-configuration"><strong>Week 3, Tuesday: change management and configuration</strong></h2>
+<div class="ap"><span>Listen: Week 3, Tuesday</span><audio controls preload="none" src="audio/Reading_Week_3_Tuesday.mp3"></audio></div>
+<p><strong>READ FIRST</strong></p>
+<p><strong>QUESTION 2 Change management and transports</strong></p>
+<p><strong>Transport path.</strong> In SAP, changes are built in development, tested in quality and imported into production through transports, managed in STMS.</p>
+<p><strong>Production population.</strong> To test it, I take the population of transports imported into production for the period from the import history or the transport tables, because a ticket-based population would miss unauthorized changes.</p>
+<p><strong>Sample and approvals.</strong> I sample transports and trace each to an approved change request, checking that approval and testing happened before the import date, and that the developer did not import their own change.</p>
+<p><strong>Direct production changes.</strong> I also check that production is protected against direct changes: the client settings in SCC4 and the system change option in SE06 should not allow changes in production, and I look at the change logs for any time they were opened.</p>
+<p><strong>Emergency changes.</strong> Emergency changes follow a faster path, so I test that each one was logged, reviewed and approved after the fact within the agreed time.</p>
+<p><strong>Import and developer access.</strong> Finally I check who can import transports and who has developer keys in production, because that access can bypass the whole process.</p>
+<p><strong>QUESTION 36 Proving configuration did not change</strong></p>
+<p><strong>Table logs and prerequisites.</strong> I use two sources. First, the table change logs: in SAP, configuration tables can be logged, and SCU3 shows changes to logged tables with who, when, and old and new values. Before relying on it, I confirm that table logging is switched on through the system parameter for client logging, and that the specific tables I care about are flagged for logging.</p>
+<p><strong>Transport history.</strong> Second, the transport history: configuration normally reaches production through customizing transports, so I search the import history for transports touching those tables or that configuration activity.</p>
+<p><strong>Reliance decision.</strong> If both show no changes, and change management ITGCs are effective, I can conclude the setting was stable.</p>
+<p><strong>Alternative evidence.</strong> If logging was off, I cannot rely on the log, so I would compare the setting at the start and end of the period, test change management more heavily, and raise the missing logging with my lead as a finding in its own right.</p>
+<h2 id="week-3-wednesday-operations-jobs-backups-and-interfaces"><strong>Week 3, Wednesday: operations, jobs, backups and interfaces</strong></h2>
+<div class="ap"><span>Listen: Week 3, Wednesday</span><audio controls preload="none" src="audio/Reading_Week_3_Wednesday.mp3"></audio></div>
+<p><strong>READ FIRST</strong></p>
+<p><strong>QUESTION 29 IT operations: batch jobs and interfaces</strong></p>
+<p><strong>Financial processing risk.</strong> The operations controls that matter are the ones that make sure financial transactions are processed completely and only once: scheduled batch jobs such as payment runs, depreciation, interest calculation and interfaces from other systems, plus backup and recovery.</p>
+<p><strong>Jobs and scheduling access.</strong> For batch job monitoring I first identify the jobs that are financially relevant, with the process owners. Then I check who can schedule or change those jobs, because that is an access risk.</p>
+<p><strong>Failed job monitoring.</strong> To test monitoring, I take the list of failed or cancelled jobs from SM37 for the period, sample them, and confirm each failure was noticed, investigated and resolved, for example through an incident ticket and a rerun.</p>
+<p><strong>Interface monitoring.</strong> For interfaces I do the same with the interface monitoring tool or error logs, and I check that reconciliations between source and SAP happen.</p>
+<p><strong>Backup and restore.</strong> I also confirm that backups run and that a restore has been tested, because a backup that has never been restored is an assumption, not a control.</p>
+<p><strong>ALSO KNOW</strong></p>
+<p><strong>•</strong> Only the approved Basis or operations team should schedule or change production financial jobs. Anyone else with that access is an access risk.</p>
+<p><strong>•</strong> A control total checked when an interface file arrives is an interface control in transit and on receipt.</p>
+<h2 id="week-3-thursday-application-controls"><strong>Week 3, Thursday: application controls</strong></h2>
+<div class="ap"><span>Listen: Week 3, Thursday</span><audio controls preload="none" src="audio/Reading_Week_3_Thursday.mp3"></audio></div>
+<p><strong>READ FIRST</strong></p>
+<p><strong>QUESTION 37 Posting period control</strong></p>
+<p><strong>Purpose and OB52 settings.</strong> Posting period control stops users from posting into accounting periods that are closed, which protects cut-off and means reported results cannot be changed after the close. In SAP it is configured in OB52 by posting period variant, account type and account range, and it can allow a special authorization group to keep a period open for specific users, such as the close team.</p>
+<p><strong>Four control risks.</strong> When I test it I look at four risks. Periods left open longer than the close calendar allows. Too many users in the authorization group that can post to open special periods. Broad access to maintain OB52 itself, because whoever can change it can reopen any period. And reopening without approval.</p>
+<p><strong>Testing and evidence.</strong> So I inspect the settings, compare them with the close calendar, review who has access to the maintenance transaction and the authorization group, and test a sample of period openings and closings, using the change logs, against approved requests.</p>
+<p><strong>QUESTION 38 Duplicate invoice check</strong></p>
+<p><strong>Duplicate check and prerequisites.</strong> SAP's duplicate invoice check compares new invoices against existing ones on a set of fields, typically vendor, company code, reference number, invoice date and amount. It only works if three things are true: the check is switched on for the vendors, through the vendor master flag; the system message is set to an error that blocks posting, rather than a warning users can click past; and the fields compared make sense.</p>
+<p><strong>Known limitation.</strong> Its weakness is that a small change to the reference, such as an extra dash, defeats it.</p>
+<p><strong>Design testing.</strong> So I test design by inspecting the configuration and message settings and the vendor master flag for a sample of vendors.</p>
+<p><strong>Data analysis.</strong> Then I test effectiveness with data analysis: I extract the year's invoices and look for likely duplicates using fuzzy matching on reference, the same amount and vendor within a short window.</p>
+<p><strong>Evaluate paid duplicates.</strong> Any real duplicates paid show that the control, or a compensating review, is not working, and I take them to the payables team.</p>
+<p><strong>ALSO KNOW</strong></p>
+<p><strong>•</strong> A three-way match blocks an invoice when price or quantity differ beyond tolerance from the purchase order and the goods receipt. To test it: positive and negative cases, the tolerance configuration agreed to policy, who can release blocked invoices, and the change logs for the period.</p>
+<h2 id="week-3-friday-exceptions-workpapers-and-pushback"><strong>Week 3, Friday: exceptions, workpapers and pushback</strong></h2>
+<div class="ap"><span>Listen: Week 3, Friday</span><audio controls preload="none" src="audio/Reading_Week_3_Friday.mp3"></audio></div>
+<p><strong>READ FIRST</strong></p>
+<p><strong>QUESTION 7 What makes a good workpaper</strong></p>
+<p><strong>Reperformance standard.</strong> A good workpaper lets an experienced reviewer who was not there understand what I did, re-perform it and reach the same conclusion without calling me.</p>
+<p><strong>Workpaper contents and sign-off.</strong> It has a clear structure: the control and the risk it addresses, the test objective, where the population came from and how I checked it was complete, how the sample was selected, the test steps, the result for each sample with the evidence cross-referenced, any exceptions and how I evaluated them, and a conclusion that answers the objective. It is signed and dated by the preparer and the reviewer.</p>
+<p><strong>Reasons for review rejection.</strong> A reviewer sends it back when the population source is missing, when evidence does not match the sample, when exceptions are described as 'minor' without analysis, when screenshots have no date or system shown, or when the conclusion says effective but the results show a failure.</p>
+<p><strong>External audit readership.</strong> I write each workpaper as if the external auditor will read it, because they often do.</p>
+<p><strong>QUESTION 8 Handling an exception</strong></p>
+<p><strong>Confirm the exception.</strong> First I make sure it is really an exception: I recheck the evidence and ask the control owner for anything I might have missed, with a deadline.</p>
+<p><strong>Document the failure.</strong> If it stands, I document it straight away: what failed, which sample, the date, and what the evidence shows.</p>
+<p><strong>Determine root cause.</strong> Then I work out the root cause, because that tells me whether it is a one-off, such as a reviewer on holiday with no backup, or a systemic problem, such as a control that never covered a whole entity.</p>
+<p><strong>Assess scope and impact.</strong> Depending on the methodology, I discuss with my lead whether to extend the sample or conclude the control is not effective. I also look for compensating controls that might reduce the risk, and I consider the impact on other controls that depend on this one.</p>
+<p><strong>Escalate promptly.</strong> I tell my lead the same day, with the facts, my initial view on severity and the options. I never wait until the end of testing to raise an exception, and I never let the control owner fix the evidence after the fact.</p>
+<p><strong>QUESTION 9 Pushback from a control owner</strong></p>
+<p><strong>Situation.</strong> Example story, to replace with your own real one: on a recent engagement, a finance manager disagreed that her monthly journal review had failed, because she said she always reviewed the journals even if she did not sign.</p>
+<p><strong>Evidence preparation.</strong> I prepared before the meeting: the control description, which required evidence of review, and the three months with no sign-off.</p>
+<p><strong>Discussion with the owner.</strong> In the meeting I started by agreeing the shared goal, a clean result for her team, and then walked through the facts without blaming anyone. I asked whether there was any other evidence, such as emails with questions on specific journals.</p>
+<p><strong>Evidence and findings.</strong> She found one month's emails, which I accepted and documented; the other two months remained exceptions.</p>
+<p><strong>Remediation and communication.</strong> We agreed the root cause, the control required a sign-off she did not know about, and she proposed a simple fix: sign-off in the workflow tool. I kept my lead informed throughout, so there were no surprises.</p>
+<p><strong>Result.</strong> The result was a fair finding she accepted, and a stronger control the next quarter.</p>
+<p><strong>Approach without a personal example.</strong> If I had not had a real example, I would describe the same approach: prepare, listen, stay on the facts, accept new evidence, and escalate if we cannot agree.</p>
+<h1 id="week-4-implementation-and-third-parties"><strong>Week 4: Implementation and third parties</strong></h1>
+<h2 id="week-4-monday-what-s4hana-changes-and-reading-a-design-document"><strong>Week 4, Monday: what S/4HANA changes, and reading a design document</strong></h2>
+<div class="ap"><span>Listen: Week 4, Monday</span><audio controls preload="none" src="audio/Reading_Week_4_Monday.mp3"></audio></div>
+<p><strong>READ FIRST</strong></p>
+<p><strong>QUESTION 15 How S/4HANA changes the control landscape</strong></p>
+<p><strong>Data model.</strong> Several things change. The data model is simplified: the Universal Journal brings finance and controlling postings into one table, so reports and reconciliations that relied on old tables must be rebuilt and re-tested.</p>
+<p><strong>Fiori access.</strong> Users increasingly work in Fiori apps rather than SAP GUI transactions, so access risk now involves Fiori catalogs, the OData services behind the apps and the backend roles, and the SoD ruleset must include Fiori apps and services.</p>
+<p><strong>Business partner.</strong> Business partner replaces separate vendor and customer master transactions, so master data controls move.</p>
+<p><strong>RISE responsibilities.</strong> Many companies also move to RISE with SAP, which shifts infrastructure and Basis controls to SAP and brings SOC 1 reliance into scope.</p>
+<p><strong>Migration risk.</strong> And the migration itself is a risk: data must be complete and accurate in the new system.</p>
+<p><strong>Embedded analytics.</strong> The opportunity is that S/4HANA offers more embedded analytics and automation, so some manual controls can become automated or be replaced with continuous monitoring.</p>
+<p><strong>QUESTION 16 Reading a functional design document</strong></p>
+<p><strong>Report purpose.</strong> I read it with the control in mind. First, the purpose: does the report give the control owner what they need to perform the control, at the right precision?</p>
+<p><strong>Data sources.</strong> Second, the data sources: which tables and fields, and do they capture all relevant transactions, including any new S/4HANA structures.</p>
+<p><strong>Selection parameters.</strong> Third, the selection screen: which parameters can users change, and could someone exclude data without it being obvious, for example a default date range or company code filter.</p>
+<p><strong>Report logic.</strong> Fourth, the logic: calculations, groupings and exception rules, written clearly enough to test.</p>
+<p><strong>Report security.</strong> Fifth, security: whether the report checks authorizations, so users only see what they should.</p>
+<p><strong>Test plan.</strong> Sixth, the test plan: I want test cases that prove completeness and accuracy, including a reconciliation to a standard report.</p>
+<p><strong>Resolve gaps before build.</strong> I feed any gaps back to the functional team before build, because fixing a design is far cheaper than failing the report as unreliable evidence at the first audit.</p>
+<h2 id="week-4-tuesday-migration-and-go-live"><strong>Week 4, Tuesday: migration and go-live</strong></h2>
+<div class="ap"><span>Listen: Week 4, Tuesday</span><audio controls preload="none" src="audio/Reading_Week_4_Tuesday.mp3"></audio></div>
+<p><strong>READ FIRST</strong></p>
+<p><strong>QUESTION 41 Data migration controls</strong></p>
+<p><strong>Before migration.</strong> Migration is where errors enter the new system for good, so I expect controls on completeness, accuracy and validity. Before migration, the data is cleansed and the mapping from old fields to new is designed and approved.</p>
+<p><strong>During the load.</strong> During each load, record counts and control totals are compared between the extract and what was loaded, and errors are corrected and reloaded.</p>
+<p><strong>Post-load reconciliations.</strong> After the load, the key reconciliations are done: general ledger balances by account and company code, open payables and receivables, asset values and inventory, from the old system to S/4HANA, with differences explained. Master data, such as vendor bank details, is sample-checked field by field.</p>
+<p><strong>Business sign-off.</strong> Finally, the business owners sign off before go-live.</p>
+<p><strong>Testing approach.</strong> To test, I reperform a sample of the reconciliations, check that sign-offs were given before go-live, and look at access during the migration window, because migration users often have powerful access that must be removed afterwards.</p>
+<p><strong>QUESTION 52 Controls across an implementation</strong></p>
+<p><strong>Prepare and explore.</strong> I get involved from the start, because controls are cheapest to build in during design. In the prepare and explore phases, I agree the controls scope with the business and the external auditor, map current controls and identify which can become automated in S/4HANA, and write control requirements into the fit-to-standard and functional design documents.</p>
+<p><strong>Realize.</strong> In realize, I check that the configuration delivers those controls, that the role design is free of SoD conflicts, and I write test scripts for the automated controls so they are tested as part of integration and user acceptance testing.</p>
+<p><strong>Deploy.</strong> In deploy, I own the cut-over controls: data migration reconciliations, approval of the migration, and access set up before go-live.</p>
+<p><strong>Hypercare.</strong> After go-live, in hypercare, I check the first period close and confirm the new controls are operating, so the first SOX cycle has evidence from day one.</p>
+<p><strong>External auditor coordination.</strong> Throughout, I keep the external auditor informed so they can plan reliance.</p>
+<h2 id="week-4-wednesday-fiori-hana-and-rise"><strong>Week 4, Wednesday: Fiori, HANA and RISE</strong></h2>
+<div class="ap"><span>Listen: Week 4, Wednesday</span><audio controls preload="none" src="audio/Reading_Week_4_Wednesday.mp3"></audio></div>
+<p><strong>READ FIRST</strong></p>
+<p><strong>QUESTION 40 Fiori security and access</strong></p>
+<p><strong>Launchpad visibility.</strong> Fiori access has layers. The launchpad shows tiles based on business catalogs and, in newer releases, spaces and pages assigned through roles. Showing a tile is not the real control.</p>
+<p><strong>Service and backend security.</strong> To run an app, the user needs authorization to start its OData service, and then the backend authorizations decide what they can actually read or change, using the same authorization objects as the GUI transactions behind the app. So a user might not see a tile but still call the service directly if they have the authorization.</p>
+<p><strong>Access testing.</strong> To check access, I look at the backend roles and the service authorizations, not just the catalogs.</p>
+<p><strong>GRC ruleset and user testing.</strong> For SoD, I make sure the GRC ruleset includes Fiori apps and their OData services and the related transaction codes, otherwise risk analysis will under-report conflicts. And I test a sample of users by checking their effective authorizations, ideally in a test system with the same roles.</p>
+<p><strong>QUESTION 18 RISE with SAP: who controls what</strong></p>
+<p><strong>SAP responsibilities and evidence.</strong> With RISE, SAP takes over the infrastructure, hosting, database and operating system administration, backups and much of the technical Basis work for the private cloud environment. Those controls move out of the client's direct testing scope and are evidenced instead by SAP's SOC 1 Type II report for the service, which customers can obtain through the SAP Trust Center.</p>
+<p><strong>Client responsibilities.</strong> What stays with the client is significant: user and role administration inside the SAP application, SoD and access reviews, approval and testing of changes before they are imported, the configuration of business controls, and monitoring SAP as a provider.</p>
+<p><strong>Scope and SOC 1 mapping.</strong> So in scoping I map which ITGCs are now SAP's, read the SOC 1 for those, map its complementary user entity controls to the client's controls, and keep full testing on the controls the client still owns.</p>
+<p><strong>Common access mistake.</strong> A common mistake is assuming RISE covers user access. It does not.</p>
+<h2 id="week-4-thursday-soc-1-reports"><strong>Week 4, Thursday: SOC 1 reports</strong></h2>
+<div class="ap"><span>Listen: Week 4, Thursday</span><audio controls preload="none" src="audio/Reading_Week_4_Thursday.mp3"></audio></div>
+<p><strong>READ FIRST</strong></p>
+<p><strong>QUESTION 17 SOC 1 Type I versus Type II</strong></p>
+<p><strong>SOC 1 purpose.</strong> A SOC 1 reports on controls at a service organization that are relevant to its clients' financial reporting.</p>
+<p><strong>Type I.</strong> A Type I gives an opinion on whether those controls were suitably designed and implemented as of a single date.</p>
+<p><strong>Type II.</strong> A Type II goes further: it covers design and operating effectiveness over a period, usually six to twelve months, and lists the service auditor's tests and results control by control.</p>
+<p><strong>SOX reliance decision.</strong> For SOX reliance over a fiscal year I need a Type II, ideally covering most of the year. A Type I only shows the controls existed on one day, so it is acceptable at most as a stop-gap, for example in a provider's first year, with extra procedures agreed with the external auditor.</p>
+<p><strong>SOC 2 distinction.</strong> I also make sure nobody accepts a SOC 2 in its place, because SOC 2 reports on security and availability criteria, not financial reporting control objectives.</p>
+<p><strong>QUESTION 43 Complementary user entity controls</strong></p>
+<p><strong>CUEC definition and reliance.</strong> Complementary user entity controls are the things the service provider says its clients must do for the provider's control objectives to be achieved. They are listed in the SOC 1 report. The service auditor's opinion assumes the client performs them, so if the client does not, the clean opinion does not protect the client.</p>
+<p><strong>Mapping and examples.</strong> What I do is take the list and map each one to a control in the client's risk and control matrix. Typical examples are that the client manages user access to the application, approves changes before asking the provider to import them, and reviews the provider's notifications.</p>
+<p><strong>Test, fill gaps and assess.</strong> Where a matching control exists, I test it as part of normal testing. Where none exists, I propose a new control with an owner and frequency and agree it with the process owner. Any CUEC that is not performed is the client's deficiency, not the provider's, and I report it that way.</p>
+<p><strong>QUESTION 44 Exceptions in a SOC 1 report</strong></p>
+<p><strong>Impact of a clean opinion.</strong> A clean opinion means the service auditor concluded the control objectives were still met overall, but each exception can still matter to my client, so I assess each one.</p>
+<p><strong>Record the exception.</strong> I record what failed, the sample size and number of failures, and the provider's response.</p>
+<p><strong>Assess client exposure.</strong> Then I ask whether my client's environment was in the failed sample or could be affected; if the report does not say, I ask the provider in writing.</p>
+<p><strong>Compensating controls.</strong> I look for compensating controls, both at the provider, such as another control in the same objective that worked, and at the client, such as a monitoring control that would catch the same problem.</p>
+<p><strong>Reliance conclusion.</strong> Then I conclude with one of three outcomes: no impact, with the reason; impact mitigated by a named compensating control, which I then test; or impact not mitigated, which I raise as a deficiency to evaluate. Writing 'no impact' next to every exception is one of the most common findings against SOC 1 reviews.</p>
+<h2 id="week-4-friday-bridge-letters-carve-out-and-soc-2"><strong>Week 4, Friday: bridge letters, carve-out and SOC 2</strong></h2>
+<div class="ap"><span>Listen: Week 4, Friday</span><audio controls preload="none" src="audio/Reading_Week_4_Friday.mp3"></audio></div>
+<p><strong>READ FIRST</strong></p>
+<p><strong>QUESTION 45 Bridge letters and coverage gaps</strong></p>
+<p><strong>Gap and bridge letter.</strong> That is a six-month gap, which is long. I would first request a bridge letter from the provider covering 1 July to 31 December.</p>
+<p><strong>Bridge letter limitations.</strong> A bridge letter is a statement from the provider's management that the controls have not changed materially and that they know of no failures since the report period. It is not audited, so on its own it is weak for a gap this long.</p>
+<p><strong>Additional evidence and testing.</strong> I would therefore discuss with the external auditor what else is needed, and lean on the client's own controls over the provider for those six months: for example the monthly reconciliation of the provider's output to the ledger, reviews of service reports and incidents, and the client's review of changes. I would test those controls for the gap period.</p>
+<p><strong>Next report timing.</strong> I would also check when the provider's next report is due, in case it arrives in time, and read the bridge letter carefully for mentions of changes, such as a new data centre.</p>
+<p><strong>QUESTION 46 Carve-out versus inclusive method</strong></p>
+<p><strong>Subservice organisations.</strong> Service organizations often rely on other providers, called subservice organizations, such as a co-location data centre.</p>
+<p><strong>Inclusive method.</strong> Under the inclusive method, the subservice organization's relevant controls are included in the description and tested within the same SOC 1 report.</p>
+<p><strong>Carve-out method.</strong> Under the carve-out method, they are excluded: the report describes what the subservice organization does and lists the controls the provider expects it to have, called complementary subservice organization controls, but does not test them.</p>
+<p><strong>Reliance impact.</strong> It matters because, under carve-out, part of the control chain my client relies on has not been examined in that report.</p>
+<p><strong>Follow-up and documentation.</strong> So I identify every carved-out provider, decide whether its controls matter to my client's financial reporting, and if they do, obtain evidence about them, usually the subservice organization's own SOC 1, or check that the provider monitors it effectively. I record this in the reliance memo.</p>
+<p><strong>ALSO KNOW</strong></p>
+<p><strong>•</strong> A SOC 2 reports on security, availability and related criteria, not on financial reporting control objectives. It does not replace a SOC 1 for SOX reliance.</p>
+<h1 id="week-5-ai-automation-stakeholders-and-behavioural-answers"><strong>Week 5: AI, automation, stakeholders and behavioural answers</strong></h1>
+<h2 id="week-5-monday-using-ai-in-sox-work-and-its-limits"><strong>Week 5, Monday: using AI in SOX work, and its limits</strong></h2>
+<div class="ap"><span>Listen: Week 5, Monday</span><audio controls preload="none" src="audio/Reading_Week_5_Monday.mp3"></audio></div>
+<p><strong>READ FIRST</strong></p>
+<p><strong>QUESTION 19 Where AI helps in control testing</strong></p>
+<p><strong>AI use cases and benefits.</strong> I use AI where there is volume and pattern work. For example, triaging hundreds of SoD conflicts into mitigated, unused and active groups using the GRC export and usage data; matching transports imported to production against change tickets; and drafting test steps or workpaper wording from my notes. It saves hours and lets me spend time on judgement.</p>
+<p><strong>Evidence and accuracy limits.</strong> Where I do not trust it is anything that needs to be proven or judged. An AI statement is never evidence; the system report is. It can invent an answer if the data it needs is missing, so I tell it to use only the data I give it and to list anything it cannot decide.</p>
+<p><strong>Professional judgement.</strong> And severity of a deficiency is a professional judgement that stays with me and my lead.</p>
+<p><strong>Verification and documentation.</strong> I always verify a sample of its output in SAP, save the prompt and output with the workpaper, and only use tools the firm and client have approved, with personal data masked.</p>
+<p><strong>QUESTION 20 Continuous controls monitoring</strong></p>
+<p><strong>Definition and exception handling.</strong> Continuous controls monitoring means using automated rules to check transactions, configuration or access frequently, often daily, instead of relying on periodic manual reviews or year-end sampling. Exceptions are sent to an owner who must investigate and close them.</p>
+<p><strong>SAP tools and examples.</strong> In SAP it can be done with SAP Process Control, with GRC Access Control alerts, or with analytics tools on extracted data. Examples include flagging changes to vendor bank details followed by a payment within a few days, monitoring for new SoD conflicts or firefighter use, detecting duplicate invoices, and alerting on changes to key configuration such as tolerances or posting periods.</p>
+<p><strong>Control design requirements.</strong> For it to work as a control, the rules must be designed and tested, the data feeding them must be complete, and every exception must be worked and evidenced. Otherwise it becomes a report nobody reads.</p>
+<p><strong>Benefits.</strong> Done well, it lets a company replace some manual controls and find problems in days rather than at year end.</p>
+<p><strong>QUESTION 53 Relying on AI-assisted work</strong></p>
+<p><strong>Approved AI tool.</strong> I would want six things documented on every AI-assisted workpaper. The tool used and confirmation it is approved for client data.</p>
+<p><strong>Source inputs.</strong> The inputs: the original system export with its parameters and a completeness check, because the AI's output is only as good as its input.</p>
+<p><strong>Prompt and output.</strong> The exact prompt and the unedited output, saved with the date.</p>
+<p><strong>System verification.</strong> The verification: which items the preparer checked in the system and what they found, including any errors the AI made.</p>
+<p><strong>Human conclusion and review.</strong> A conclusion written and signed by the preparer and reviewed by me, never phrased as 'per AI'.</p>
+<p><strong>Personal data handling.</strong> And how personal data was handled.</p>
+<p><strong>Auditor alignment and review.</strong> I would agree with the external auditor at planning where we intend to use AI and how we will document it, so there are no surprises at year end. When I review, I check those six items first, before I look at the conclusion.</p>
+<p><strong>QUESTION 54 Controls over a GenAI controls tool</strong></p>
+<p><strong>Scope decision.</strong> I would treat the tool as an in-scope system, because its output will support SOX conclusions.</p>
+<p><strong>Risk assessment.</strong> The main risks are wrong or invented results, incomplete inputs, unnoticed changes to prompts or models, and people over-relying on it.</p>
+<p><strong>Requirements and safeguards.</strong> So I would ask for: requirements traced to the risk and control matrix, so it is clear which control steps it performs; input controls proving the data it receives is complete and accurate; a test set with known answers, re-run whenever the prompt, model or configuration changes; change management over prompts and model versions, just like code; access controls over who can change it; logging of every run, including inputs and outputs; and mandatory human review and sign-off of its conclusions.</p>
+<p><strong>Auditor alignment and lead role.</strong> I would also involve the external auditor early, because if they cannot rely on the tool, the savings disappear. A lead's job here is to translate the control matrix into clear functional requirements the developers can build and test against.</p>
+<p><strong>ALSO KNOW</strong></p>
+<p><strong>•</strong> An AI summary is a pointer, not evidence. Read Section IV (the exceptions) of a SOC 1 yourself.</p>
+<h2 id="week-5-tuesday-ai-data-safety-and-ai-drafted-procedures"><strong>Week 5, Tuesday: AI data safety and AI-drafted procedures</strong></h2>
+<div class="ap"><span>Listen: Week 5, Tuesday</span><audio controls preload="none" src="audio/Reading_Week_5_Tuesday.mp3"></audio></div>
+<p><strong>READ FIRST</strong></p>
+<p><strong>QUESTION 47 Using AI on client data safely</strong></p>
+<p><strong>Confidentiality issue.</strong> That is a confidentiality and data protection problem. The client's data, including personal data, has gone to a service the firm and client have not approved, and we cannot be sure how it is stored or used.</p>
+<p><strong>Stop and escalate.</strong> I would ask my colleague to stop and not paste anything more, and I would raise it with our lead straight away, without blaming, because the firm will have an incident process and may need to inform the client or its data protection officer. I would not try to quietly fix it myself.</p>
+<p><strong>Redo the analysis.</strong> Then I would help redo the analysis the right way: using the AI tool the firm has approved for client work, masking names with codes and keeping the key separately, and saving the prompt and output with the workpaper.</p>
+<p><strong>Team follow-up.</strong> Afterwards, I would suggest a short reminder to the team on the AI rules, because these mistakes usually come from people trying to save time, not from bad intent.</p>
+<p><strong>QUESTION 48 Checking AI-drafted test steps</strong></p>
+<p><strong>Population completeness.</strong> I would check it against a short list. Is there a step to prove the user list given to reviewers was complete, by comparing it with a system extract at the same date? AI drafts often miss this.</p>
+<p><strong>Sampling.</strong> Does the sample size follow our methodology for a quarterly control, usually two quarters, rather than an inflated number?</p>
+<p><strong>SAP evidence sources.</strong> Are the SAP sources right, for example user and role data from SUIM or the GRC reports, and do they exist in this system?</p>
+<p><strong>Removal follow-up.</strong> Does it test that requested removals were actually processed, by tracing them to change documents?</p>
+<p><strong>Reviewer independence.</strong> Is the reviewer independent of the security team?</p>
+<p><strong>Reperformance.</strong> And could another tester re-perform the steps from what is written?</p>
+<p><strong>Human review trail.</strong> I would correct the draft, mark it as reviewed by me, and keep the original output and my changes with the workpaper.</p>
+<p><strong>ALSO KNOW</strong></p>
+<p><strong>•</strong> A drafted step that names a table or transaction that does not exist shows the draft was not grounded in the system. Verify every technical reference.</p>
+<h2 id="week-5-wednesday-behavioural-and-honest-answers"><strong>Week 5, Wednesday: behavioural and honest answers</strong></h2>
+<div class="ap"><span>Listen: Week 5, Wednesday</span><audio controls preload="none" src="audio/Reading_Week_5_Wednesday.mp3"></audio></div>
+<p><strong>READ FIRST</strong></p>
+<p><strong>QUESTION 21 Tell me about yourself</strong></p>
+<p><strong>Speaking structure.</strong> A strong answer follows past, present and future in about two minutes.</p>
+<p><strong>Past experience.</strong> Example, to adapt with your own details: 'I started my career in finance operations, where I worked with SAP every day and saw how a small control failure, such as a missed vendor bank check, could turn into a real loss. That got me interested in controls.</p>
+<p><strong>Present skills and interests.</strong> Over the past year I have trained in SAP controls testing: I have tested ITGCs and segregation of duties on a live SAP lab system, worked through 90 audit procedures with evidence packs, and practised SOC 1 reviews and AI-assisted testing. What I enjoy most is finding the root cause of a control gap and helping the business fix it in a practical way.</p>
+<p><strong>Future fit.</strong> I am applying for this role because your team works on SAP S/4HANA and GRC, which is exactly where I want to build my career, and I would bring both a business view and hands-on testing skills from day one.'</p>
+<p><strong>QUESTION 24 Moving into controls without a Big 4 background</strong></p>
+<p><strong>Acknowledge the gap.</strong> I would answer the gap directly and then show evidence. 'You are right that I have not worked at a Big 4 firm.</p>
+<p><strong>Show relevant skills.</strong> What I have done is learn and practise the same work: I have tested ITGCs and segregation of duties on a live SAP lab system, worked through 90 SAP audit procedures with worked examples and evidence packs, written a SOC 1 reliance memo, and practised the deficiency evaluation and remediation steps your team carries out.</p>
+<p><strong>Explain the business advantage.</strong> I bring something extra as well: I have worked inside the business with SAP, so I understand how control owners think and what makes a control practical rather than theoretical. That helps me get evidence on time and recommend fixes that actually get implemented.</p>
+<p><strong>Show adaptability and invite a test.</strong> I know every firm has its own methodology, and I am used to learning structured methods quickly. I would welcome a test of my skills, for example a short case on a user access review.'</p>
+<p><strong>QUESTION 25 Working under pressure and deadlines</strong></p>
+<p><strong>Situation and task.</strong> Use the situation, task, action, result structure with your own example. Model: 'Two weeks before a quarter-end testing deadline, I had twelve controls left and two of my evidence providers were on leave.</p>
+<p><strong>Prioritise the work.</strong> I listed the controls and ranked them by risk and by how close they were to done; the key access and change controls came first because other controls depended on them.</p>
+<p><strong>Escalate and act.</strong> I told my lead the same day which three controls were at risk and proposed a plan: I would finish the high-risk ones first, ask the providers' backups for evidence, and move two low-risk controls to the following week with the auditor's agreement. I blocked time for focused testing and kept a short daily update.</p>
+<p><strong>Result.</strong> We concluded ten controls on time, including all the high-risk ones, and the other two a week later with no surprises for the auditor.</p>
+<p><strong>Lesson learned.</strong> What I learned is to raise risk early, because it gives everyone options.'</p>
+<p><strong>ALSO KNOW</strong></p>
+<p><strong>•</strong> When you lack an experience, state what you have done, what you have studied and built (labs, project) and how you would close the gap. Never claim what you cannot defend with the next question.</p>
+<h2 id="week-5-thursday-executive-communication-and-auditor-disagreement"><strong>Week 5, Thursday: executive communication and auditor disagreement</strong></h2>
+<div class="ap"><span>Listen: Week 5, Thursday</span><audio controls preload="none" src="audio/Reading_Week_5_Thursday.mp3"></audio></div>
+<p><strong>READ FIRST</strong></p>
+<p><strong>QUESTION 22 Explaining a finding to a senior executive</strong></p>
+<p><strong>What happened.</strong> I would lead with the business impact, not the technical detail, and keep it to four points. What happened: 'Five people in IT could change vendor bank details and approve payments without anyone checking.'</p>
+<p><strong>Business impact.</strong> Why it matters: 'That means a fraudulent payment could have been made without being caught; we found no evidence it happened, but we cannot rely on the control this year.'</p>
+<p><strong>Corrective action.</strong> What is being done: 'Access has been removed, a daily review of bank changes starts next week, and we are checking every bank change made this year.'</p>
+<p><strong>Executive support needed.</strong> What I need: 'Your support for the finance team to complete that review by month end, and awareness that this may be reported to the audit committee as a significant deficiency.'</p>
+<p><strong>Delivery and emphasis.</strong> I would have the detail ready if asked, but I would not start with transaction codes or authorization objects. Executives remember the risk, the action and the ask.</p>
+<p><strong>QUESTION 23 Disagreement with the external auditor</strong></p>
+<p><strong>Clarify the challenge.</strong> I start by understanding exactly what concerns them: is it the design, the evidence, the sample, or how I evaluated an exception? I ask them to point to the specific gap, and I take it seriously, because they may have seen something I missed.</p>
+<p><strong>Recheck and correct.</strong> Then I go back to the workpaper and evidence. If they are right, I say so, correct the conclusion and fix the root cause in our approach.</p>
+<p><strong>Support the conclusion.</strong> If I still believe the control is effective, I set out the facts calmly: the control design, the evidence for each sample and how it meets the methodology, and anything that addresses their concern. Often more evidence or a short extra test resolves it.</p>
+<p><strong>Escalate and document.</strong> I bring my lead in early rather than at the end, and if we still disagree, the lead and the auditor's manager resolve it. I document the discussion and the outcome in the workpaper.</p>
+<p><strong>Collaborative tone.</strong> The relationship matters for the whole engagement, so I keep the tone collaborative: we both want a reliable conclusion.</p>
+<p><strong>ALSO KNOW</strong></p>
+<p><strong>•</strong> Disagreement with the external auditor: ask for their reasoning, compare facts and criteria, bring your lead in, and do not argue or concede on the spot.</p>
+<p><strong>•</strong> If new facts change the picture, update the conclusion and say so openly.</p>
+<p><strong>•</strong> If management asks you to soften a finding, the facts and the classification under the criteria stay fixed. Wording can improve clarity but not change meaning.</p>
+<h2 id="week-5-friday-deadlines-panel-questions-and-genai-controls"><strong>Week 5, Friday: deadlines, panel questions and GenAI controls</strong></h2>
+<div class="ap"><span>Listen: Week 5, Friday</span><audio controls preload="none" src="audio/Reading_Week_5_Friday.mp3"></audio></div>
+<p><strong>READ FIRST</strong></p>
+<p><strong>QUESTION 26 Your questions for the interviewer</strong></p>
+<p><strong>First 90 days.</strong> Always have three or four questions ready, tailored to the interviewer. Strong examples: 'What would success look like in this role after the first 90 days?'</p>
+<p><strong>SAP landscape and tools.</strong> 'Which SAP systems and GRC tools does the team work with today, and are there changes coming, such as a move to S/4HANA or RISE?'</p>
+<p><strong>Current control challenges.</strong> 'What are the biggest control challenges the team is facing this year?'</p>
+<p><strong>External auditor relationship.</strong> 'How does the team work with the external auditor, and how much do they rely on your testing?'</p>
+<p><strong>AI and automation.</strong> 'How is the team using AI or automation in testing, and where do you want to go next?'</p>
+<p><strong>Supervisor preferences.</strong> For a supervisor: 'How do you like updates and questions from your team?'</p>
+<p><strong>Timing and close.</strong> Save questions about salary and benefits for the recruiter or a later stage. End by thanking them and briefly restating why you are a good fit.</p>
+<p><strong>ALSO KNOW</strong></p>
+<p><strong>•</strong> Deadline at risk: tell your lead early, with what is done, what is left, the new date and the options.</p>
+<p><strong>•</strong> No time left: protect the most risky tests and the quality of evidence, and agree scope reductions in writing with your lead.</p>
+<p><strong>•</strong> GenAI controls: an approved-use policy, access control, review of outputs, and logging of prompts and results.</p>
+<p><strong>•</strong> How would you use AI here? Name specific uses, the checks and the limits, including data safety and human accountability.</p>
+<p><strong>•</strong> Sharp challenge from a panel: stay calm, restate in your own words, accept a fair point, and hold your ground with facts where you are right.</p>
+<h1 id="week-6-own-the-project"><strong>Week 6: Own the project</strong></h1>
+<h2 id="week-6-monday-scoping-and-the-first-two-weeks"><strong>Week 6, Monday: scoping and the first two weeks</strong></h2>
+<div class="ap"><span>Listen: Week 6, Monday</span><audio controls preload="none" src="audio/Reading_Week_6_Monday.mp3"></audio></div>
+<p><strong>READ FIRST</strong></p>
+<p><strong>QUESTION 55 Your first two weeks as controls lead</strong></p>
+<p><strong>Week one assessment.</strong> In week one I take control and find the fires. I meet my sponsor and the external auditor to understand what they expect and what worries them. I read the scope, the risk and control matrix and the testing tracker, and I check them against reality with the team, because trackers on late engagements are usually optimistic.</p>
+<p><strong>RAID log and priorities.</strong> I start a RAID log of risks, assumptions, issues and dependencies, and I pick the two or three issues that could stop the engagement, typically missing evidence, unavailable control owners or unclear scope, and act on them.</p>
+<p><strong>Week two plan.</strong> In week two I re-baseline the plan with realistic dates and owners, agree it with the sponsor, and set a weekly rhythm: a team stand-up, a status report with clear measures, and a meeting with the external auditor.</p>
+<p><strong>Early delivery.</strong> I also aim for an early win, such as closing a backlog of evidence requests, to rebuild confidence.</p>
+<p><strong>Changes to defer.</strong> What I avoid is changing the methodology or the team in the first days before I understand why we are behind.</p>
+<p><strong>QUESTION 60 Scoping a new SAP controls engagement</strong></p>
+<p><strong>Business and audit.</strong> I ask questions in four areas. Business and audit: which entities and accounts are significant, what the external auditor plans to rely on, and what deficiencies were found last year.</p>
+<p><strong>Systems.</strong> Systems: the SAP landscape, which systems and clients feed financial reporting, the database and operating system, interfaces, and any planned changes such as an S/4HANA move.</p>
+<p><strong>Third parties.</strong> Third parties: hosting, RISE, payroll or other providers, and whether SOC 1 reports exist.</p>
+<p><strong>People.</strong> And people: who owns each process and IT area, and who will provide evidence.</p>
+<p><strong>Documents to request.</strong> I request the system landscape diagram, the previous year's control matrix and findings, user and role listings, and the change and incident processes.</p>
+<p><strong>Scoping memo and agreement.</strong> From that I produce a scoping memo explaining what is in and out of scope and why, an updated risk and control matrix, a test plan with timing and sample sizes, a resource plan, and an evidence request list. I agree all of it with the client and the external auditor before testing starts.</p>
+<p><strong>ALSO KNOW</strong></p>
+<p><strong>•</strong> Briefing a junior on day one: what the project is, their tasks, how the workpaper standard works, how to escalate and when to ask.</p>
+<h2 id="week-6-tuesday-the-risk-and-control-matrix"><strong>Week 6, Tuesday: the risk and control matrix</strong></h2>
+<div class="ap"><span>Listen: Week 6, Tuesday</span><audio controls preload="none" src="audio/Reading_Week_6_Tuesday.mp3"></audio></div>
+<p><strong>READ FIRST</strong></p>
+<p><strong>QUESTION 56 Building and owning the control matrix</strong></p>
+<p><strong>Top-down design.</strong> I build it top-down: from significant accounts and assertions to the risks of material misstatement in each process, then the key controls that address each risk, and finally the IT general controls over the systems those controls depend on.</p>
+<p><strong>Required control attributes.</strong> Each control row needs clear attributes: a unique ID, a description precise enough to test, the risk it addresses, owner, frequency, type (preventive or detective), nature (manual, automated or IT-dependent manual), the system and any key reports used, and the evidence expected.</p>
+<p><strong>Owner validation.</strong> I walk it through with each control owner, so they recognise their control as written, and agree it with the external auditor before testing.</p>
+<p><strong>Change control and maintenance.</strong> During the year I keep it right with change control: any change to a process, system, role or owner comes to me, is assessed for impact on the matrix, updated with a version history, and communicated to testers and the auditor. A matrix that nobody updates after March is one of the most common causes of year-end surprises.</p>
+<p><strong>ALSO KNOW</strong></p>
+<p><strong>•</strong> A key risk with no control: record a design gap, raise it, and consider whether a compensating control exists.</p>
+<p><strong>•</strong> Two controls on the same risk: test the key one and treat the other as secondary unless the methodology says otherwise, and document why.</p>
+<p><strong>•</strong> If the design changed mid-year, test the control under both versions for the periods each applied.</p>
+<h2 id="week-6-wednesday-classification-and-remediation"><strong>Week 6, Wednesday: classification and remediation</strong></h2>
+<div class="ap"><span>Listen: Week 6, Wednesday</span><audio controls preload="none" src="audio/Reading_Week_6_Wednesday.mp3"></audio></div>
+<p><strong>READ FIRST</strong></p>
+<p><strong>QUESTION 51 Classifying deficiencies</strong></p>
+<p><strong>Control deficiency.</strong> A deficiency exists when a control's design or operation does not allow staff to prevent or detect misstatements on a timely basis.</p>
+<p><strong>Severity factors.</strong> To decide severity I look at two questions: how likely is it that the failure could lead to a misstatement, and how big could that misstatement be.</p>
+<p><strong>Material weakness.</strong> A material weakness is a deficiency, or combination, where there is a reasonable possibility that a material misstatement will not be prevented or detected on time.</p>
+<p><strong>Significant deficiency.</strong> A significant deficiency is less severe than that but important enough to merit the attention of those overseeing financial reporting, such as the audit committee.</p>
+<p><strong>Exposure and ITGC impact.</strong> In practice I document the facts, the accounts and amounts exposed, any compensating controls that operated and at what precision, and whether several deficiencies in the same area combine to something worse. An ITGC failure is assessed by its effect on the application controls and reports that depend on it.</p>
+<p><strong>Rating and escalation.</strong> I bring a proposed rating with reasoning to my lead; final classification is agreed with management and the external auditor.</p>
+<p><strong>QUESTION 59 Driving remediation to closure</strong></p>
+<p><strong>Year-end timing.</strong> I work back from year end. A remediated control usually has to operate for a minimum period before it can be retested, for example one or two cycles for a monthly control, so I calculate the latest date each fix must be in place.</p>
+<p><strong>Severity and priority.</strong> Then I prioritise by severity: anything that could be a significant deficiency or material weakness first.</p>
+<p><strong>Fix and ownership.</strong> For each deficiency I agree with the owner a clear root cause, the fix, what 'done' looks like, a date, and the evidence that will prove it.</p>
+<p><strong>Tracking and escalation.</strong> I track them on one remediation tracker and review it weekly with the owners and monthly with the sponsor. Where an owner misses a date, I escalate quickly and early, using the escalation ladder: first a direct conversation, then their manager, then the sponsor.</p>
+<p><strong>Retesting and sponsor updates.</strong> I also plan retesting with the external auditor so they know when to expect results. Where a fix cannot be in place in time, I tell the sponsor early so the impact on the year-end assessment can be managed honestly.</p>
+<h2 id="week-6-thursday-status-kpis-and-reviewing-a-junior"><strong>Week 6, Thursday: status, KPIs and reviewing a junior</strong></h2>
+<div class="ap"><span>Listen: Week 6, Thursday</span><audio controls preload="none" src="audio/Reading_Week_6_Thursday.mp3"></audio></div>
+<p><strong>READ FIRST</strong></p>
+<p><strong>QUESTION 57 Reporting status and KPIs</strong></p>
+<p><strong>Overall status.</strong> I keep it to one page, every week, in the same format. At the top, an overall status in red, amber or green with one sentence on why.</p>
+<p><strong>Testing progress.</strong> Then a few measures. Testing progress: controls tested and concluded against the plan, by area.</p>
+<p><strong>Evidence requests.</strong> Evidence: requests outstanding and how many are overdue by owner, because overdue evidence is the best early warning of a late finish.</p>
+<p><strong>Exceptions and deficiencies.</strong> Exceptions and deficiencies: how many are open, their likely severity and remediation status, with anything that could be a significant deficiency or material weakness called out by name.</p>
+<p><strong>Risks, owners and decisions.</strong> Then the top risks and issues from the RAID log with owners and dates, and finally the decisions or help I need from the sponsor.</p>
+<p><strong>Tracker and early escalation.</strong> I base every number on the tracker so it can be checked. The rule I follow is no surprises: if something is going wrong, the sponsor hears it from me first, with a plan, not at the end of the quarter.</p>
+<p><strong>QUESTION 58 Reviewing your team's work</strong></p>
+<p><strong>Population review.</strong> I review in a set order so I catch what matters first. Is the population complete and is its source documented?</p>
+<p><strong>Sample review.</strong> Does the sample follow the methodology?</p>
+<p><strong>Evidence review.</strong> Does the evidence for each sample actually show the control operated, and is it dated and from the right system?</p>
+<p><strong>Exceptions and conclusion.</strong> Are exceptions properly evaluated? And does the conclusion match the results?</p>
+<p><strong>Formatting and review notes.</strong> Formatting comes last. I record review points in the workpaper or tracker, so they are cleared and visible to the auditor, rather than fixing things myself.</p>
+<p><strong>Coaching and improvement.</strong> For feedback, I sit with the tester for the first few workpapers, explain why each point matters, for example why an undated screenshot is not evidence, and ask them to fix it themselves. I look for patterns rather than single errors, and I give praise for good work in the same detail. Over a few weeks the review points should fall, and I use that as my measure of whether the coaching is working.</p>
+<h2 id="week-6-friday-the-whole-thornfield-spine-and-rookie-mistakes"><strong>Week 6, Friday: the whole Thornfield spine and rookie mistakes</strong></h2>
+<div class="ap"><span>Listen: Week 6, Friday</span><audio controls preload="none" src="audio/Reading_Week_6_Friday.mp3"></audio></div>
+<p><strong>READ FIRST</strong></p>
+<p>No new reading today. This section pulls the whole project together: re-read the Friday boxes of Weeks 1 to 5 and the Week 6 boxes above.</p>
+<p><strong>ALSO KNOW</strong></p>
+<p><strong>•</strong> Project order: onboarding and mobilisation, planning and scoping, understanding the RCM, test planning, evidence extraction, interim testing (access, then change and operations), SOC 1 reliance, exceptions and findings, remediation and retesting, roll-forward, review and close-out.</p>
+<p><strong>•</strong> Rookie mistakes: sampling from a population the control owner supplied without checking completeness; waiting to report exceptions; writing “no impact” against every SOC 1 exception; treating sign-off as proof of removal.</p>
+<p><strong>•</strong> A conclusion of “effective” cannot stand over an unexplained exception: evaluate the exception first.</p>
+<p><strong>•</strong> Three questions for any evidence: is it complete, is it accurate, and does it cover the whole period?</p>
+<p><strong>•</strong> A senior owns scope, judgement, review and communication, not just the performing of tests.</p>

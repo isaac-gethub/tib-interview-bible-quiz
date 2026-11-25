@@ -33,11 +33,20 @@ details>summary{cursor:pointer;font-weight:700;color:var(--navy);padding:4px 0}
 .pill{display:inline-block;padding:4px 12px;border-radius:20px;font-weight:700;font-size:14px}.pill.g{background:var(--gb);color:var(--g)}.pill.a{background:var(--ab);color:var(--a)}.pill.r{background:var(--rb);color:var(--r)}
 table{width:100%;border-collapse:collapse;font-size:14px}td,th{border:1px solid var(--line);padding:6px 8px;text-align:left}th{background:#e9eef8}
 .sticky{position:sticky;bottom:0;background:#fff;border-top:1px solid var(--line);padding:10px 14px;margin:0 -14px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.doc{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;font-size:16px;line-height:1.55}
+.doc h1{font-size:22px;color:var(--navy);margin:26px 0 8px;scroll-margin-top:84px}.doc h1:first-child{margin-top:0}
+.doc h2{font-size:18px;color:var(--navy);border-bottom:2px solid var(--navy);padding-bottom:3px;margin:24px 0 8px;scroll-margin-top:84px}
+.doc h3{font-size:16px;color:var(--navy);margin:14px 0 4px}.doc p{margin:6px 0}.doc ul,.doc ol{margin:6px 0 6px 22px;padding:0}
+.doc table{margin:10px 0;display:block;overflow-x:auto}.doc blockquote{margin:6px 0;padding-left:12px;border-left:3px solid var(--line)}
+.ap{position:sticky;top:60px;z-index:3;background:#eef2fa;border:1px solid var(--line);border-radius:10px;padding:8px 10px;margin:8px 0;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.ap span{font-weight:700;color:var(--navy);font-size:14px}.ap audio{flex:1 1 220px;min-width:0;height:36px}.ap small{color:var(--r);width:100%}
+.dbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.dbar select{font:inherit;font-size:14px;padding:8px;border-radius:8px;border:1px solid var(--line);flex:1 1 220px;min-width:0}
+@media(max-width:600px){.doc{padding:12px 12px;font-size:15.5px}.ap{top:0}header{position:static}}
 @media(max-width:600px){main{padding:10px}.card{padding:12px}.chip{flex:1 1 44%}.big{font-size:38px}header h1{font-size:14px}}
 @media(min-width:880px){main{padding:22px 14px}}
 </style></head><body>
 <header><h1>Interview Bible Quiz<small>Senior SAP Controls Consultant · TIB Systems LLC</small></h1>
-<select id="jump" aria-label="Jump to any quiz"></select><button id="hm">Home</button><button id="pg">Progress</button></header>
+<select id="jump" aria-label="Jump to any quiz"></select><button id="hm">Home</button><button id="rd">Reading + Audio</button><button id="dc">Study Guide</button><button id="pg">Progress</button></header>
 <main id="app"></main>
 <script>
 let DATA,ALL=[],BY={};
@@ -57,12 +66,12 @@ function buildJump(){const j=$('#jump');j.innerHTML='<option value="">Jump to an
  DATA.weeks.forEach(w=>{const g=document.createElement('optgroup');g.label='Week '+w.n+': '+w.title;w.items.forEach(i=>{const o=document.createElement('option');o.value=i.id;o.textContent=i.day+' · '+i.name;g.appendChild(o)});j.appendChild(g)});
  const o=document.createElement('option');o.value='FINAL';o.textContent='Final exam (30 questions)';j.appendChild(o)}
 $('#jump').onchange=e=>{if(e.target.value)location.hash=go(e.target.value);e.target.value=''};
-$('#hm').onclick=()=>{if(location.hash)location.hash='';else route()};$('#pg').onclick=()=>location.hash='#progress';
+$('#hm').onclick=()=>{if(location.hash)location.hash='';else route()};$('#pg').onclick=()=>location.hash='#progress';$('#rd').onclick=()=>location.hash='#reading';$('#dc').onclick=()=>location.hash='#document';
 const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 // routes
 window.onhashchange=()=>{if(DATA)route()};
 function route(){const h=location.hash.slice(1).toUpperCase();window.scrollTo(0,0);
- if(BY[h])return quiz(BY[h]);if(h==='PROGRESS')return progress();return home()}
+ if(BY[h])return quiz(BY[h]);if(h==='PROGRESS')return progress();if(h==='READING')return docView('reading');if(h==='DOCUMENT')return docView('document');return home()}
 const go=id=>'#'+id.toLowerCase();
 function home(){const done=ALL.filter(i=>ST.res[i.id]).length;
  let h=`<div class="card"><h2>Pick any week, any quiz</h2><p>Nothing is locked. Read the box at the top of a quiz, answer without notes, then submit to see your score and the reason for every answer. Retake as often as you like; your best score is kept on this device.</p>
@@ -117,5 +126,16 @@ function submit(){const it=A.it;A.done=true;const s=A.idx.filter(i=>A.ans[i]===0
  if(A.full){const r=ST.res[it.id]||{best:0,n:0};r.n++;r.last=s;r.total=it.qs.length;r.best=Math.max(r.best,s);ST.res[it.id]=r;
   ST.wrong=ST.wrong||{};ST.wrong[it.id]=A.idx.filter(i=>A.ans[i]!==0);save(ST)}
  render();window.scrollTo(0,0)}
+
+function docView(kind){const rd=kind==='reading';app.innerHTML='<div class="card">Loading…</div>';
+ fetch(rd?'docs/reading.html':'docs/mcq.html').then(r=>{if(!r.ok)throw 0;return r.text()}).then(h=>{
+  app.innerHTML=`<div class="card"><h2>${rd?'Reading material with audio':'Study guide: questions and answers (read only)'}</h2><p class="meta">${rd?'Read along and press play on any day. Nothing is locked: start from any week.':'The full multiple-choice companion, for reading and reference. To take scored quizzes, use Home.'}</p><div class="dbar"><select id="dj"><option value="">Jump to any week or day…</option></select>${rd?'<label class="meta"><input type="checkbox" id="auto" checked> Play the next day automatically</label>':''}</div></div><div class="doc" id="doc">${h}</div>`;
+  const d=$('#doc'),sel=$('#dj');d.querySelectorAll('h1,h2').forEach((e,i)=>{e.id='s'+i;const o=document.createElement('option');o.value=e.id;o.textContent=(e.tagName==='H2'?'   ':'')+e.textContent;sel.appendChild(o)});
+  sel.onchange=()=>{const e=document.getElementById(sel.value);if(e)e.scrollIntoView({behavior:'smooth',block:'start'});sel.value=''};
+  if(rd){const as=[...d.querySelectorAll('audio')];
+   d.addEventListener('error',e=>{if(e.target.tagName==='AUDIO'&&!e.target.parentNode.querySelector('small')){const s=document.createElement('small');s.textContent='This audio file is not available yet.';e.target.parentNode.appendChild(s)}},true);
+   as.forEach((a,i)=>{a.addEventListener('play',()=>as.forEach(b=>{if(b!==a)b.pause()}));
+    a.addEventListener('ended',()=>{if(!$('#auto').checked)return;const n=as[i+1];if(n){n.parentNode.scrollIntoView({behavior:'smooth',block:'center'});n.play().catch(()=>{})}})})}
+ }).catch(()=>{app.innerHTML='<div class="card">Could not load the document. Reload the page.</div>'})}
 fetch('data.json').then(r=>r.json()).then(d=>{const X=i=>{i.reading=(i.rd||[]).map(a=>({n:a[0],title:a[1],rows:a[2]}));i.also=i.al||[];i.qs=i.qs.map(q=>({lvl:q.l,text:q.x,opts:q.o,exp:q.e,case:q.ca,scenario:q.ss}));return i};d.weeks.forEach(w=>w.items.forEach(X));X(d.final);DATA=d;DATA.weeks.forEach(w=>w.items.forEach(i=>{i.week=w.n;ALL.push(i)}));DATA.final.week=7;ALL.push(DATA.final);ALL.forEach(i=>BY[i.id]=i);buildJump();route()}).catch(()=>{app.innerHTML='<div class="card">Could not load the question data. Reload the page.</div>'});
 </script></body></html>
